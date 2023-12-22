@@ -18,6 +18,7 @@ from keras.models import load_model
 import json
 from keras.layers import Dropout
 from openpyxl import Workbook
+import uvicorn
 
 def predictGod(pengalaman, pendidikan, skillset):
     wb = Workbook()
@@ -80,3 +81,6 @@ async def create_item(item: Item):
     return {
         "prediction": predictGod(item.pengalaman_kerja, item.pendidikan, item.skillset)
     }
+
+if __name__ == "__main__":
+    uvicorn.run(app, host='0.0.0.0', port=8080)
